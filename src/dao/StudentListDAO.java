@@ -3,6 +3,7 @@ package dao;
 import domain.Student;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.TreeSet;
 
 /**
  * A DAO class for managing the storage of Students
@@ -10,6 +11,12 @@ import java.util.Collection;
 public class StudentListDAO implements StudentDAO {
 
    private static Collection<Student> students = new ArrayList<>();
+   private static Collection<String> majors = new TreeSet();
+
+   @Override
+   public Collection<String> getMajors() {
+      return majors;
+   }
 
    /**
     * Adds a student to the DAO.
@@ -19,6 +26,7 @@ public class StudentListDAO implements StudentDAO {
    @Override
    public void save(Student student) {
       students.add(student);
+      majors.add(student.getMajor());
    }
 
    /**

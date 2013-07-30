@@ -11,7 +11,7 @@ public interface StudentDAO {
     * @param student - the student to add.
     */
    void save(Student student);
-
+   Collection<String> getMajors() ;
    /**
     * Returns all students that have been added to the DAO.
     *

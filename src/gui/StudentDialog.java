@@ -3,6 +3,7 @@ package gui;
 import dao.StudentDAO;
 import dao.StudentListDAO;
 import domain.Student;
+import gui.helpers.SimpleListModel;
 
 public class StudentDialog extends javax.swing.JDialog {
 
@@ -13,7 +14,9 @@ public class StudentDialog extends javax.swing.JDialog {
    public StudentDialog(java.awt.Frame parent, boolean modal) {
       super(parent, modal);
       initComponents();
-      cmbMajor.setEditable(true);             
+      cmbMajor.setEditable(true);  
+      SimpleListModel majorsModel = new SimpleListModel(dao.getMajors());
+      cmbMajor.setModel(majorsModel);
    }
 
    @SuppressWarnings("unchecked")
