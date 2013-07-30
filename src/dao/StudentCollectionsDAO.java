@@ -37,4 +37,10 @@ public class StudentCollectionsDAO implements StudentDAO {
    public Collection<Student> getAll() {
       return students;
    }
+   
+   
+   @Override
+   public void delete(Student student){
+      students.remove(student);
+      }
 }

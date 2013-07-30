@@ -18,4 +18,6 @@ public interface StudentDAO {
     * @return The collection of students.
     */
    Collection<Student> getAll();
+   
+   void delete(Student student);
 }
