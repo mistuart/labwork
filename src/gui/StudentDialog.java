@@ -11,14 +11,22 @@ public class StudentDialog extends javax.swing.JDialog {
    
    private Student student = new Student();
 
-   public StudentDialog(java.awt.Frame parent, boolean modal) {
-      super(parent, modal);
+   public StudentDialog(java.awt.Window parent, boolean modal) {
+      super(parent);
+      super.setModal(modal);
       initComponents();
       cmbMajor.setEditable(true);  
       SimpleListModel majorsModel = new SimpleListModel(dao.getMajors());
       cmbMajor.setModel(majorsModel);
+   }  
+   public StudentDialog(java.awt.Window parent, boolean modal, Student student) {
+      this(parent, modal);
+      this.student = student;
+      txtId.setText(student.getId().toString());
+      txtName.setText(student.getName());
+      cmbMajor.setSelectedItem(student.getMajor());
+      txtId.setEditable(false);
    }
-
    @SuppressWarnings("unchecked")
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
    private void initComponents() {

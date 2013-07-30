@@ -27,6 +27,7 @@ public class StudentReportDialog extends javax.swing.JDialog {
       lstStudents = new javax.swing.JList();
       btnClose = new javax.swing.JButton();
       btnDelete = new javax.swing.JButton();
+      btnEdit = new javax.swing.JButton();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -46,6 +47,13 @@ public class StudentReportDialog extends javax.swing.JDialog {
          }
       });
 
+      btnEdit.setText("Edit");
+      btnEdit.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnEditActionPerformed(evt);
+         }
+      });
+
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
       layout.setHorizontalGroup(
@@ -55,9 +63,11 @@ public class StudentReportDialog extends javax.swing.JDialog {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                .addGroup(layout.createSequentialGroup()
-                  .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGap(18, 18, 18)
-                  .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                  .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                  .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                  .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addContainerGap())
       );
       layout.setVerticalGroup(
@@ -68,7 +78,8 @@ public class StudentReportDialog extends javax.swing.JDialog {
             .addGap(18, 18, 18)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(btnClose)
-               .addComponent(btnDelete))
+               .addComponent(btnDelete)
+               .addComponent(btnEdit))
             .addContainerGap())
       );
 
@@ -90,9 +101,18 @@ public class StudentReportDialog extends javax.swing.JDialog {
       }
    }//GEN-LAST:event_btnDeleteActionPerformed
 
+   private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+ StudentDialog frame = new StudentDialog(this, true, 
+                     (Student)lstStudents.getSelectedValue());
+      frame.setLocationRelativeTo(this);
+      frame.setVisible(true);
+      studentsModel.updateItems(dao.getAll());
+   }//GEN-LAST:event_btnEditActionPerformed
+
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton btnClose;
    private javax.swing.JButton btnDelete;
+   private javax.swing.JButton btnEdit;
    private javax.swing.JList lstStudents;
    private javax.swing.JScrollPane scrollPane;
    // End of variables declaration//GEN-END:variables
