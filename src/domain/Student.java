@@ -1,6 +1,20 @@
 package domain;
 
-public class Student {
+public class Student implements Comparable{
+
+   @Override
+   public int compareTo(Object o) {
+      if (this.getClass() != o.getClass()){
+         throw new UnsupportedOperationException("Cannot compare these items.");
+      }
+      Student s = (Student)o;
+      if (this.id > s.id){
+         return 1;
+      }else{
+         return 0;
+      }
+}
+
 
    private Integer id;
    private String name;
