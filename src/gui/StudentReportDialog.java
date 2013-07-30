@@ -4,6 +4,7 @@ import dao.StudentCollectionsDAO;
 import dao.StudentDAO;
 import domain.Student;
 import gui.helpers.SimpleListModel;
+import javax.swing.JOptionPane;
 
 public class StudentReportDialog extends javax.swing.JDialog {
 
@@ -79,8 +80,14 @@ public class StudentReportDialog extends javax.swing.JDialog {
    }//GEN-LAST:event_btnCloseActionPerformed
 
    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-      dao.delete((Student)lstStudents.getSelectedValue());
-      studentsModel.updateItems(dao.getAll());
+      if (!lstStudents.isSelectionEmpty()){
+         int result = JOptionPane.showConfirmDialog(this,
+                           "Are you sure you want to delete this student?");
+         if (result == JOptionPane.YES_OPTION){
+            dao.delete((Student)lstStudents.getSelectedValue());
+            studentsModel.updateItems(dao.getAll());
+         } 
+      }
    }//GEN-LAST:event_btnDeleteActionPerformed
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
