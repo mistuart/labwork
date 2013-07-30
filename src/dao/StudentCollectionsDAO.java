@@ -1,16 +1,15 @@
 package dao;
 
 import domain.Student;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.TreeSet;
 
 /**
  * A DAO class for managing the storage of Students
  */
-public class StudentListDAO implements StudentDAO {
+public class StudentCollectionsDAO implements StudentDAO {
 
-   private static Collection<Student> students = new ArrayList<>();
+   private static Collection<Student> students = new TreeSet();
    private static Collection<String> majors = new TreeSet();
 
    @Override
