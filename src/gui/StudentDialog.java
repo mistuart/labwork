@@ -1,13 +1,13 @@
 package gui;
 
 import dao.StudentDAO;
-import dao.StudentListDAO;
+import dao.StudentCollectionsDAO;
 import domain.Student;
 import gui.helpers.SimpleListModel;
 
 public class StudentDialog extends javax.swing.JDialog {
 
-   private StudentDAO dao = new StudentListDAO();
+   private StudentDAO dao = new StudentCollectionsDAO();
    
    private Student student = new Student();
 
