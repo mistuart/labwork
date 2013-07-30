@@ -97,16 +97,19 @@ public class StudentReportDialog extends javax.swing.JDialog {
          if (result == JOptionPane.YES_OPTION){
             dao.delete((Student)lstStudents.getSelectedValue());
             studentsModel.updateItems(dao.getAll());
+            lstStudents.clearSelection();
          } 
       }
    }//GEN-LAST:event_btnDeleteActionPerformed
 
    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
- StudentDialog frame = new StudentDialog(this, true, 
+if (!lstStudents.isSelectionEmpty()){
+      StudentDialog frame = new StudentDialog(this, true, 
                      (Student)lstStudents.getSelectedValue());
       frame.setLocationRelativeTo(this);
       frame.setVisible(true);
       studentsModel.updateItems(dao.getAll());
+}
    }//GEN-LAST:event_btnEditActionPerformed
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
