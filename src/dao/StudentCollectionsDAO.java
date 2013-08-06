@@ -37,7 +37,7 @@ public class StudentCollectionsDAO implements StudentDAO {
     */
    @Override
    public Collection<Student> getAll() {
-      return students;
+      return students.values();
    }
    
    
