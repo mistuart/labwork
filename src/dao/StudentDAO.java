@@ -20,4 +20,6 @@ public interface StudentDAO {
    Collection<Student> getAll();
    
    void delete(Student student);
+   
+   Student getById(int id);
 }

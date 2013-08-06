@@ -45,4 +45,10 @@ public class StudentCollectionsDAO implements StudentDAO {
    public void delete(Student student){
       students.remove(student.getId());
       }
+
+   @Override
+   public Student getById(int id){
+      return students.get(id);
+   }
+
 }
