@@ -2,6 +2,8 @@ package dao;
 
 import domain.Student;
 import java.util.Collection;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 /**
@@ -9,7 +11,7 @@ import java.util.TreeSet;
  */
 public class StudentCollectionsDAO implements StudentDAO {
 
-   private static Collection<Student> students = new TreeSet();
+   private static Map<Integer, Student> students = new TreeMap<>();
    private static Collection<String> majors = new TreeSet();
 
    @Override
@@ -24,7 +26,7 @@ public class StudentCollectionsDAO implements StudentDAO {
     */
    @Override
    public void save(Student student) {
-      students.add(student);
+      students.put(student.getId(), student);
       majors.add(student.getMajor());
    }
 
@@ -41,6 +43,6 @@ public class StudentCollectionsDAO implements StudentDAO {
    
    @Override
    public void delete(Student student){
-      students.remove(student);
+      students.remove(student.getId());
       }
 }
