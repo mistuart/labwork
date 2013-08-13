@@ -88,6 +88,7 @@
     <Component class="javax.swing.JButton" name="btnDelete">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete"/>
+        <Property name="name" type="java.lang.String" value="btnDelete" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
@@ -96,6 +97,7 @@
     <Component class="javax.swing.JButton" name="btnEdit">
       <Properties>
         <Property name="text" type="java.lang.String" value="Edit"/>
+        <Property name="name" type="java.lang.String" value="btnEdit" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditActionPerformed"/>
@@ -104,6 +106,7 @@
     <Component class="javax.swing.JButton" name="btnSearch">
       <Properties>
         <Property name="text" type="java.lang.String" value="Search"/>
+        <Property name="name" type="java.lang.String" value="btnSearch" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchActionPerformed"/>
@@ -112,6 +115,7 @@
     <Component class="javax.swing.JTextField" name="txtIdSearch">
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter ID"/>
+        <Property name="name" type="java.lang.String" value="txtSearch" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>

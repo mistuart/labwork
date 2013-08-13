@@ -16,7 +16,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.mockito.ArgumentCaptor;
 import static org.mockito.Mockito.*;
+import static org.fest.swing.core.matcher.JButtonMatcher.withText;
+import static org.fest.swing.core.matcher.DialogMatcher.withTitle;
 /**
  *
  * @author user
@@ -84,6 +87,78 @@ public class StudentReportDialogTest {
         assertTrue("ensure list contains Jack", model.contains(jack));
         assertTrue("ensure list contains Jill", model.contains(jill));
         assertTrue("ensure list contains correct number of students", model.getSize() == students.size());
+        
+    }
+    
+    @Test
+    public void testReportDelete(){
+        
+        fest = new DialogFixture(dialog);
+        fest.show();
+        
+        fest.robot.settings().delayBetweenEvents(75);
+        
+        fest.list().selectItem(jill.toString());
+        
+        fest.button("btnDelete").click();
+        
+        DialogFixture confirmDialog = fest.dialog(withTitle("Select an Option").andShowing()).requireVisible();
+        
+        confirmDialog.button(withText("No")).click();
+        
+        verify(dao, never()).delete(null);
+        
+        fest.list().selectItem(jill.toString());
+        
+        fest.button("btnDelete").click();
+        
+        confirmDialog = fest.dialog(withTitle("Select an Option").andShowing()).requireVisible();
+        
+        confirmDialog.button(withText("Yes")).click();
+        
+        ArgumentCaptor<Student> argument = ArgumentCaptor.forClass(Student.class);
+        
+        verify(dao).delete(argument.capture());
+        
+        Student deletedStudent = argument.getValue();
+        
+        assertEquals("deleted student should be Jill", jill, deletedStudent);
+        
+    }
+    
+    @Test
+    public void testReportSearch(){
+        
+        fest = new DialogFixture(dialog);
+        fest.show();
+        
+        fest.robot.settings().delayBetweenEvents(75);
+        
+        fest.textBox("txtSearch").selectAll().enterText("1234");
+        fest.button("btnSearch").click();
+        
+        verify(dao).getById(jack.getId());
+        
+        SimpleListModel model = (SimpleListModel) fest.list().component().getModel();
+        
+        assertTrue("ensure lit contains jack", model.contains(jack));
+        assertTrue("ensure only jack is showing", model.getSize() == 1);
+        
+    }
+    
+    @Test
+    public void testReportEdit(){
+        fest = new DialogFixture(dialog);
+        fest.show();
+        
+        fest.robot.settings().delayBetweenEvents(75);
+        
+        fest.list().selectItem(jill.toString());
+        fest.button("btnEdit").click();
+        
+        DialogFixture editDialog = fest.dialog("studentDialog").requireVisible();
+        
+        editDialog.textBox("txtId").requireText("4321");
         
     }
 }

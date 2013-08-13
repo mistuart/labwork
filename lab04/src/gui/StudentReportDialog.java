@@ -22,91 +22,95 @@ public class StudentReportDialog extends javax.swing.JDialog {
    }
 
    @SuppressWarnings("unchecked")
-   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-   private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-      scrollPane = new javax.swing.JScrollPane();
-      lstStudents = new javax.swing.JList();
-      btnClose = new javax.swing.JButton();
-      btnDelete = new javax.swing.JButton();
-      btnEdit = new javax.swing.JButton();
-      btnSearch = new javax.swing.JButton();
-      txtIdSearch = new javax.swing.JTextField();
+        scrollPane = new javax.swing.JScrollPane();
+        lstStudents = new javax.swing.JList();
+        btnClose = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        txtIdSearch = new javax.swing.JTextField();
 
-      setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-      scrollPane.setViewportView(lstStudents);
+        scrollPane.setViewportView(lstStudents);
 
-      btnClose.setText("Close");
-      btnClose.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnCloseActionPerformed(evt);
-         }
-      });
+        btnClose.setText("Close");
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
 
-      btnDelete.setText("Delete");
-      btnDelete.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnDeleteActionPerformed(evt);
-         }
-      });
+        btnDelete.setText("Delete");
+        btnDelete.setName("btnDelete"); // NOI18N
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
-      btnEdit.setText("Edit");
-      btnEdit.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnEditActionPerformed(evt);
-         }
-      });
+        btnEdit.setText("Edit");
+        btnEdit.setName("btnEdit"); // NOI18N
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
-      btnSearch.setText("Search");
-      btnSearch.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnSearchActionPerformed(evt);
-         }
-      });
+        btnSearch.setText("Search");
+        btnSearch.setName("btnSearch"); // NOI18N
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
-      txtIdSearch.setText("Enter ID");
+        txtIdSearch.setText("Enter ID");
+        txtIdSearch.setName("txtSearch"); // NOI18N
 
-      javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-      getContentPane().setLayout(layout);
-      layout.setHorizontalGroup(
-         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-               .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtIdSearch))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                     .addComponent(txtIdSearch))
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                     .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                     .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE))))
-            .addContainerGap())
-      );
-      layout.setVerticalGroup(
-         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-               .addComponent(btnSearch)
-               .addComponent(txtIdSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-               .addComponent(btnClose)
-               .addComponent(btnDelete)
-               .addComponent(btnEdit))
-            .addContainerGap())
-      );
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSearch)
+                    .addComponent(txtIdSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnClose)
+                    .addComponent(btnDelete)
+                    .addComponent(btnEdit))
+                .addContainerGap())
+        );
 
-      pack();
-   }// </editor-fold>//GEN-END:initComponents
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
       this.dispose();
@@ -139,13 +143,13 @@ if (!lstStudents.isSelectionEmpty()){
       studentsModel.updateItems(dao.getById(id));
    }//GEN-LAST:event_btnSearchActionPerformed
 
-   // Variables declaration - do not modify//GEN-BEGIN:variables
-   private javax.swing.JButton btnClose;
-   private javax.swing.JButton btnDelete;
-   private javax.swing.JButton btnEdit;
-   private javax.swing.JButton btnSearch;
-   private javax.swing.JList lstStudents;
-   private javax.swing.JScrollPane scrollPane;
-   private javax.swing.JTextField txtIdSearch;
-   // End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JList lstStudents;
+    private javax.swing.JScrollPane scrollPane;
+    private javax.swing.JTextField txtIdSearch;
+    // End of variables declaration//GEN-END:variables
 }
