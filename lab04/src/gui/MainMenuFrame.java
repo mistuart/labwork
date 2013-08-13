@@ -1,10 +1,14 @@
 package gui;
 
+import dao.StudentDAO;
+
 public class MainMenuFrame extends javax.swing.JFrame {
 
-   public MainMenuFrame() {
+   StudentDAO dao;
+   public MainMenuFrame(StudentDAO dao) {
       initComponents();
       setLocationRelativeTo(null);
+      this.dao = dao;
       this.setResizable(false);
    }
 
@@ -80,13 +84,13 @@ public class MainMenuFrame extends javax.swing.JFrame {
 	}//GEN-LAST:event_btnExitActionPerformed
 
 	private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-      StudentDialog frame = new StudentDialog(this, true);
+      StudentDialog frame = new StudentDialog(this, true, dao);
       frame.setLocationRelativeTo(this);
       frame.setVisible(true);
    }//GEN-LAST:event_btnAddActionPerformed
 
 	private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-      StudentReportDialog dialog = new StudentReportDialog(this, true);
+      StudentReportDialog dialog = new StudentReportDialog(this, true, dao);
       dialog.setLocationRelativeTo(this);
       dialog.setVisible(true);
    }//GEN-LAST:event_btnViewActionPerformed

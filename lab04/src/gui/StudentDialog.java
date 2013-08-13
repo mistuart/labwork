@@ -7,20 +7,21 @@ import gui.helpers.SimpleListModel;
 
 public class StudentDialog extends javax.swing.JDialog {
 
-   private StudentDAO dao = new StudentJdbcDAO();
+   private StudentDAO dao;
    
    private Student student = new Student();
 
-   public StudentDialog(java.awt.Window parent, boolean modal) {
+   public StudentDialog(java.awt.Window parent, boolean modal, StudentDAO dao) {
       super(parent);
       super.setModal(modal);
+      this.dao = dao;
       initComponents();
       cmbMajor.setEditable(true);  
       SimpleListModel majorsModel = new SimpleListModel(dao.getMajors());
       cmbMajor.setModel(majorsModel);
    }  
-   public StudentDialog(java.awt.Window parent, boolean modal, Student student) {
-      this(parent, modal);
+   public StudentDialog(java.awt.Window parent, boolean modal, Student student, StudentDAO dao) {
+      this(parent, modal, dao);
       this.student = student;
       txtId.setText(student.getId().toString());
       txtName.setText(student.getName());

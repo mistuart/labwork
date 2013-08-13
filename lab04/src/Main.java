@@ -1,4 +1,6 @@
 
+import dao.StudentDAO;
+import dao.StudentJdbcDAO;
 import gui.MainMenuFrame;
 import java.awt.EventQueue;
 
@@ -22,7 +24,8 @@ public class Main {
 
 			@Override
 			public void run() {
-				new MainMenuFrame().setVisible(true);
+                            StudentDAO dao = new StudentJdbcDAO();
+				new MainMenuFrame(dao).setVisible(true);
 			}
 			
 		});

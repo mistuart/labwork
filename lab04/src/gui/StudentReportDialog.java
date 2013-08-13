@@ -8,12 +8,14 @@ import javax.swing.JOptionPane;
 
 public class StudentReportDialog extends javax.swing.JDialog {
 
-   private StudentDAO dao = new StudentJdbcDAO();
+   private StudentDAO dao;
    
-   private SimpleListModel studentsModel = new SimpleListModel(dao.getAll());
+   private SimpleListModel studentsModel;
 
-   public StudentReportDialog(java.awt.Frame parent, boolean modal) {
+   public StudentReportDialog(java.awt.Frame parent, boolean modal, StudentDAO dao) {
       super(parent, modal);
+      this.dao = dao;
+      studentsModel = new SimpleListModel(dao.getAll());
       initComponents();
       
       lstStudents.setModel(studentsModel);
@@ -125,7 +127,7 @@ public class StudentReportDialog extends javax.swing.JDialog {
    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
 if (!lstStudents.isSelectionEmpty()){
       StudentDialog frame = new StudentDialog(this, true, 
-                     (Student)lstStudents.getSelectedValue());
+                     (Student)lstStudents.getSelectedValue(), dao);
       frame.setLocationRelativeTo(this);
       frame.setVisible(true);
       studentsModel.updateItems(dao.getAll());
