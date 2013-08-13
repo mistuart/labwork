@@ -19,7 +19,7 @@ public class daoTest {
     public daoTest() {
     }
     
-    private StudentDAO dao = new StudentCollectionsDAO();
+    private StudentDAO dao = new StudentJdbcDAO();
     
     private int jackId = 11111;
     private Student jack;
