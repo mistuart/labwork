@@ -5,6 +5,7 @@
 package gui;
 
 import dao.StudentDAO;
+import domain.Student;
 import java.util.Collection;
 import java.util.TreeSet;
 import org.fest.swing.fixture.DialogFixture;
@@ -12,6 +13,9 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
@@ -47,9 +51,64 @@ public class StudentDialogTest {
     public void tearDown() {
         fest.cleanUp();
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    
+    @Test
+    public void testEdit(){
+        Student jack = new Student(1234, "Jack", "Knitting");
+        
+        StudentDialog dialog = new StudentDialog(null, true, jack, dao);
+        
+        fest = new DialogFixture(dialog);
+        fest.show();
+        
+        fest.robot.settings().delayBetweenEvents(75);
+        
+        fest.textBox("txtId").requireText("1234");
+        fest.textBox("txtName").requireText("Jack");
+        fest.comboBox("cmbMajor").requireSelection("Knitting");
+        
+        fest.textBox("txtName").selectAll().enterText("Jim");
+        fest.comboBox("cmbMajor").selectItem("Ninjitsu");
+        
+        fest.button("btnSave").click();
+        
+        ArgumentCaptor<Student> argument = ArgumentCaptor.forClass(Student.class);
+        
+        verify(dao).save(argument.capture());
+        
+        Student edited = argument.getValue();
+        
+        assertEquals("ensure the name was changed", "Jim", edited.getName());
+        assertEquals("ensure the major was changed", "Ninjitsu", edited.getMajor());
+    }
+    
+    @Test
+    public void testSave(){
+        StudentDialog dialog = new StudentDialog(null, true, dao);
+        
+        fest = new DialogFixture(dialog);
+        fest.show();
+        
+        fest.robot.settings().delayBetweenEvents(75);
+        
+        fest.textBox("txtId").enterText("9876");
+        fest.textBox("txtName").enterText("Johnny");
+        fest.comboBox("cmbMajor").selectItem("Ninjitsu");
+        
+        fest.button("btnSave").click();
+        
+        
+        ArgumentCaptor<Student> argument = ArgumentCaptor.forClass(Student.class);
+        
+        verify(dao).save(argument.capture());
+        
+        Student saved = argument.getValue();
+        
+        assertEquals("check id saved", 9876, (int)saved.getId());
+        assertEquals("check name saved", "Johnny", saved.getName());
+        assertEquals("check major saved", "Ninjitsu", saved.getMajor());
+        
+        
+        
+    }
 }
