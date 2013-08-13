@@ -78,9 +78,41 @@ public class daoTest {
             }
         }
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    
+    @Test
+    public void testDaoGetById(){
+        
+        Student result = dao.getById(11111);
+        
+        assertEquals("should be jack",jack, result);
+        
+        assertEquals(jack.getId(), result.getId());
+        assertEquals(jack.getMajor(), result.getMajor());
+        assertEquals(jack.getName(), result.getName());
+        
+        
+        result = dao.getById(55555);
+        assertNull("should get null", result);
+    }
+    
+    
+    @Test
+    public void testGetMajors(){
+        Collection<String> result = dao.getMajors();
+        assertTrue("should contain Knitting", result.contains("Knitting"));
+        assertTrue("should contain Ninjitsu", result.contains("Ninjitsu"));
+    }
+    
+    @Test
+    public void testSaveToEdit(){
+        jack.setName("Jenny");
+        dao.save(jack);
+        
+        Student result = dao.getById(jackId);
+        
+        assertEquals("should still get same student", jack, result);
+        assertEquals("Jack should be Jenny", jack.getName(), result.getName());
+        
+
+    }
 }
