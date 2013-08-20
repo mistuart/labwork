@@ -1,9 +1,11 @@
 package gui;
 
 import dao.StudentDAO;
-import dao.StudentJdbcDAO;
 import domain.Student;
 import gui.helpers.SimpleListModel;
+import java.text.DecimalFormat;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.NumberFormatter;
 
 public class StudentDialog extends javax.swing.JDialog {
 
@@ -19,7 +21,13 @@ public class StudentDialog extends javax.swing.JDialog {
       cmbMajor.setEditable(true);  
       SimpleListModel majorsModel = new SimpleListModel(dao.getMajors());
       cmbMajor.setModel(majorsModel);
-   }  
+      DecimalFormat integerFormat = new DecimalFormat("#0");
+      NumberFormatter integerFormatter = new NumberFormatter(integerFormat);
+      integerFormatter.setValueClass(Integer.class);
+      integerFormatter.setAllowsInvalid(false);
+      DefaultFormatterFactory factory = new DefaultFormatterFactory(integerFormatter);
+      txtId.setFormatterFactory(factory);
+      }  
    public StudentDialog(java.awt.Window parent, boolean modal, Student student, StudentDAO dao) {
       this(parent, modal, dao);
       this.student = student;
@@ -36,10 +44,10 @@ public class StudentDialog extends javax.swing.JDialog {
         btnCancel = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         lblId = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
         lblName = new javax.swing.JLabel();
         lblMajor = new javax.swing.JLabel();
         cmbMajor = new javax.swing.JComboBox();
+        txtId = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("studentDialog"); // NOI18N
@@ -65,8 +73,6 @@ public class StudentDialog extends javax.swing.JDialog {
         lblId.setText("ID:");
         lblId.setName("lblId"); // NOI18N
 
-        txtId.setName("txtId"); // NOI18N
-
         lblName.setText("Name:");
         lblName.setName("lblName"); // NOI18N
 
@@ -79,6 +85,8 @@ public class StudentDialog extends javax.swing.JDialog {
                 cmbMajorActionPerformed(evt);
             }
         });
+
+        txtId.setName("txtId"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,9 +102,9 @@ public class StudentDialog extends javax.swing.JDialog {
                             .addComponent(lblId, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(5, 5, 5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
                             .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                            .addComponent(cmbMajor, 0, 219, Short.MAX_VALUE)))
+                            .addComponent(cmbMajor, 0, 219, Short.MAX_VALUE)
+                            .addComponent(txtId)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
@@ -134,7 +142,7 @@ public class StudentDialog extends javax.swing.JDialog {
    }//GEN-LAST:event_btnCancelActionPerformed
 
    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-      student.setId(Integer.parseInt(txtId.getText()));
+      student.setId((Integer)txtId.getValue());
       student.setName(txtName.getText());
       student.setMajor((String) cmbMajor.getSelectedItem());
 
@@ -154,7 +162,7 @@ public class StudentDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblMajor;
     private javax.swing.JLabel lblName;
-    private javax.swing.JTextField txtId;
+    private javax.swing.JFormattedTextField txtId;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }
