@@ -39,8 +39,8 @@ public class StudentDialogTest {
     @Before
     public void setUp() {
         Collection<String> majors = new TreeSet<>();
-        majors.add("Kintting");
-        majors.add("Ninjitsu");
+        majors.add("Kint");
+        majors.add("Ninj");
         
         dao = mock(StudentDAO.class);
         
@@ -54,7 +54,7 @@ public class StudentDialogTest {
     
     @Test
     public void testEdit(){
-        Student jack = new Student(1234, "Jack", "Knitting");
+        Student jack = new Student(1234, "Jack", "Knit");
         
         StudentDialog dialog = new StudentDialog(null, true, jack, dao);
         
@@ -65,10 +65,10 @@ public class StudentDialogTest {
         
         fest.textBox("txtId").requireText("1234");
         fest.textBox("txtName").requireText("Jack");
-        fest.comboBox("cmbMajor").requireSelection("Knitting");
+        fest.comboBox("cmbMajor").requireSelection("Knit");
         
         fest.textBox("txtName").selectAll().enterText("Jim");
-        fest.comboBox("cmbMajor").selectItem("Ninjitsu");
+        fest.comboBox("cmbMajor").selectItem("Ninj");
         
         fest.button("btnSave").click();
         
@@ -79,7 +79,7 @@ public class StudentDialogTest {
         Student edited = argument.getValue();
         
         assertEquals("ensure the name was changed", "Jim", edited.getName());
-        assertEquals("ensure the major was changed", "Ninjitsu", edited.getMajor());
+        assertEquals("ensure the major was changed", "Ninj", edited.getMajor());
     }
     
     @Test
@@ -93,7 +93,7 @@ public class StudentDialogTest {
         
         fest.textBox("txtId").enterText("9876");
         fest.textBox("txtName").enterText("Johnny");
-        fest.comboBox("cmbMajor").selectItem("Ninjitsu");
+        fest.comboBox("cmbMajor").selectItem("Ninj");
         
         fest.button("btnSave").click();
         
@@ -106,7 +106,7 @@ public class StudentDialogTest {
         
         assertEquals("check id saved", 9876, (int)saved.getId());
         assertEquals("check name saved", "Johnny", saved.getName());
-        assertEquals("check major saved", "Ninjitsu", saved.getMajor());
+        assertEquals("check major saved", "Ninj", saved.getMajor());
         
         
         

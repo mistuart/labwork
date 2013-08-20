@@ -29,8 +29,8 @@ public class daoTest {
     
     @Before
     public void setUp() {
-        jack = new Student(jackId, "Jack", "Knitting");
-        jill = new Student(jillId, "Jill", "Ninjitsu");
+        jack = new Student(jackId, "Jack", "Knit");
+        jill = new Student(jillId, "Jill", "Ninj");
         
         dao.save(jack);
         dao.save(jill);
@@ -46,7 +46,7 @@ public class daoTest {
     @Test
     public void testDaoSaveAndDelete(){
         
-        Student fred = new Student(33333, "Fred", "Gregorian Chanting");
+        Student fred = new Student(33333, "Fred", "Chnt");
         
         dao.save(fred);
         
@@ -99,8 +99,8 @@ public class daoTest {
     @Test
     public void testGetMajors(){
         Collection<String> result = dao.getMajors();
-        assertTrue("should contain Knitting", result.contains("Knitting"));
-        assertTrue("should contain Ninjitsu", result.contains("Ninjitsu"));
+        assertTrue("should contain Knit", result.contains("Knit"));
+        assertTrue("should contain Ninj", result.contains("Ninj"));
     }
     
     @Test

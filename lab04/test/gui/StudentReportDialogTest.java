@@ -48,8 +48,8 @@ public class StudentReportDialogTest {
     
     @Before
     public void setUp() {
-        jack = new Student(1234, "Jack", "Knitting");
-        jill = new Student(4321, "Jill", "Ninjitsu");
+        jack = new Student(1234, "Jack", "Knit");
+        jill = new Student(4321, "Jill", "Ninj");
         
         students = new TreeSet<>();
         students.add(jack);

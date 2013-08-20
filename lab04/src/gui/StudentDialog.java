@@ -4,8 +4,14 @@ import dao.StudentDAO;
 import domain.Student;
 import gui.helpers.SimpleListModel;
 import java.text.DecimalFormat;
+import java.util.Set;
+import javax.swing.JOptionPane;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.NumberFormatter;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 public class StudentDialog extends javax.swing.JDialog {
 
@@ -142,12 +148,24 @@ public class StudentDialog extends javax.swing.JDialog {
    }//GEN-LAST:event_btnCancelActionPerformed
 
    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+      
       student.setId((Integer)txtId.getValue());
       student.setName(txtName.getText());
       student.setMajor((String) cmbMajor.getSelectedItem());
 
+      ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+      Validator validator = factory.getValidator();
+      Set<ConstraintViolation<Student>> constraintViolations = validator.validate(student);
+      if (!constraintViolations.isEmpty()){
+          StringBuilder message = new StringBuilder();
+          for (ConstraintViolation<Student> violation : constraintViolations){
+              message.append(violation.getMessage()).append("\n");
+          }
+          JOptionPane.showMessageDialog(this, message.toString(), "Input Problem", JOptionPane.WARNING_MESSAGE);
+          return;
+      }
+      
       dao.save(student);
-
       this.dispose();
    }//GEN-LAST:event_btnSaveActionPerformed
 

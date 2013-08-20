@@ -1,13 +1,24 @@
 package domain;
 
 import java.util.Objects;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
 
 public class Student implements Comparable<Student>{
 
 
-
+   @NotNull (message="ID must be provided.")
+   @Range(min=100, max=9999999, message="ID must contain between 3 and 7 digits(inclusive).")
    private Integer id;
+   
+   @NotBlank(message="Name must be provided.")
+   @Length(min=2,message="Name must contain at least two characters.")
    private String name;
+   
+   @NotBlank(message="Major must be provided.")
+   @Length(min=4, max=4, message="Major must be a four character code.")
    private String major;
 
    public Student() {
