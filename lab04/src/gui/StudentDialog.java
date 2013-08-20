@@ -1,5 +1,6 @@
 package gui;
 
+import dao.DAOException;
 import dao.StudentDAO;
 import domain.Student;
 import gui.helpers.SimpleListModel;
@@ -148,15 +149,15 @@ public class StudentDialog extends javax.swing.JDialog {
    }//GEN-LAST:event_btnCancelActionPerformed
 
    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-      
-      student.setId((Integer)txtId.getValue());
-      student.setName(txtName.getText());
-      student.setMajor((String) cmbMajor.getSelectedItem());
+      try{
+        student.setId((Integer)txtId.getValue());
+        student.setName(txtName.getText());
+        student.setMajor((String) cmbMajor.getSelectedItem());
 
-      ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-      Validator validator = factory.getValidator();
-      Set<ConstraintViolation<Student>> constraintViolations = validator.validate(student);
-      if (!constraintViolations.isEmpty()){
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<Student>> constraintViolations = validator.validate(student);
+        if (!constraintViolations.isEmpty()){
           StringBuilder message = new StringBuilder();
           for (ConstraintViolation<Student> violation : constraintViolations){
               message.append(violation.getMessage()).append("\n");
@@ -167,6 +168,10 @@ public class StudentDialog extends javax.swing.JDialog {
       
       dao.save(student);
       this.dispose();
+      }catch(DAOException ex){
+          JOptionPane.showMessageDialog(this, ex.getMessage(), "DAO exception", JOptionPane.WARNING_MESSAGE);
+      }
+      
    }//GEN-LAST:event_btnSaveActionPerformed
 
    private void cmbMajorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMajorActionPerformed

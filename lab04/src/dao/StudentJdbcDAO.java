@@ -31,7 +31,7 @@ public class StudentJdbcDAO implements StudentDAO{
         
         stmt.executeUpdate();
      } catch (SQLException ex){
-        throw new RuntimeException(ex);
+        throw new DAOException(ex.getMessage(), ex);
      }
       
    }
@@ -51,7 +51,7 @@ public class StudentJdbcDAO implements StudentDAO{
          return majors;
          
          } catch (SQLException ex){
-            throw new RuntimeException(ex);
+            throw new DAOException(ex.getMessage(),ex);
          }  
    }
 @Override
@@ -76,7 +76,7 @@ public class StudentJdbcDAO implements StudentDAO{
          return students;
          
          } catch (SQLException ex){
-            throw new RuntimeException(ex);
+            throw new DAOException(ex.getMessage(), ex);
          }  
    }
       
@@ -92,7 +92,7 @@ public class StudentJdbcDAO implements StudentDAO{
         stmt.setInt(1, student.getId());        
         stmt.executeUpdate();
          } catch (SQLException ex){
-            throw new RuntimeException(ex);
+            throw new DAOException(ex.getMessage(), ex);
          } 
    }
    @Override
@@ -115,7 +115,7 @@ public class StudentJdbcDAO implements StudentDAO{
          return s;
          
          } catch (SQLException ex){
-            throw new RuntimeException(ex);
+            throw new DAOException(ex.getMessage(), ex);
          } 
    }
 }
